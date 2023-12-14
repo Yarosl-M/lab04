@@ -59,10 +59,7 @@ var
   et: TEpikTimer;
   timeElapsed: extended;
   timeElapsedMicroseconds: real;
-  stuff: array of integer;
 begin
-  SetLength(stuff, 4);
-
   table := IterationTable;
   n := NInputIterative.Value;
 
@@ -101,6 +98,28 @@ var
   discard: real;
   table: TStringGrid;
 begin
+  table := RecursionTable;
+  n := NInputRecursive.Value;
+
+  arr := FibRecursive(n);
+
+  table.ColCount := 3;
+  table.RowCount := n + 1;
+  table.FixedRows := 1;
+
+  table.Cells[0, 0] := 'n';
+  table.Cells[1, 0] := 'F(n)';
+  table.Cells[2, 0] := 'Соотношение';
+
+  for i := 1 to n do
+  begin
+    table.Cells[0, i] := IntToStr(i);
+    table.Cells[1, i] := IntToStr(arr[i - 1]);
+    if (i <> 1) then
+       table.Cells[2, i] := FloatToStr(arr[i] / arr[i - 1])
+    else
+       table.Cells[2, i] := '—';
+  end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
