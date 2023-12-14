@@ -26,6 +26,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="etpackage"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -35,10 +38,16 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="unit1.pas"/>
+        <Filename Value="form.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="fibonaccibackend.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FibonacciBackend"/>
       </Unit>
     </Units>
   </ProjectOptions>

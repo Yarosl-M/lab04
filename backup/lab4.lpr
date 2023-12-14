@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, form, FibonacciBackend
+  Forms, form, unit1
   { you can add units after this };
 
 {$R *.res}

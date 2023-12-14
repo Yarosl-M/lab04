@@ -59,7 +59,10 @@ var
   et: TEpikTimer;
   timeElapsed: extended;
   timeElapsedMicroseconds: real;
+  stuff: array of integer;
 begin
+  SetLength(stuff, 4);
+
   table := IterationTable;
   n := NInputIterative.Value;
 
@@ -98,7 +101,6 @@ var
   discard: real;
   table: TStringGrid;
 begin
-
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
