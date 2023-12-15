@@ -134,9 +134,9 @@ object Form1: TForm1
   end
   object StatsTable: TStringGrid
     Left = 24
-    Height = 200
+    Height = 88
     Top = 480
-    Width = 432
+    Width = 416
     ColCount = 3
     RowCount = 3
     TabOrder = 7

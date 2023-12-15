@@ -108,6 +108,7 @@ var
   discard: real;
   table: TStringGrid;
   timeElapsedMicroseconds: real;
+  timeElapsed: extended;
 begin
   table := RecursionTable;
   n := NInputRecursive.Value;
@@ -116,7 +117,8 @@ begin
   timer.Start;
   arr := FibRecursive(n);
   timer.Stop;
-  timeElapsedMicroseconds := timer.Elapsed * 1000000.0;
+  timeElapsed := timer.Elapsed;
+  timeElapsedMicroseconds := timeElapsed * 1000000.0;
 
   table.ColCount := 3;
   table.RowCount := n + 1;
