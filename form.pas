@@ -48,28 +48,35 @@ implementation
 
 var
   cv: TCanvas;
+  timer: TEpikTimer;
 const
   phi = (Sqrt(5) + 1) / 2.0;
+
+procedure DrawRatioRows(data: FibArr; n: integer);
+var
+  RatioArr, OddEvenRatioArr:  array of real;
+  i: integer;
+begin
+  SetLength(RatioArr, n - 1);
+  SetLength(OddEvenRatioArr, n - 2);
+end;
 
 procedure TForm1.IterationButtonClick(Sender: TObject);
 var
   arr: FibArr;
   n, i: integer;
   table: TStringGrid;
-  et: TEpikTimer;
   timeElapsed: extended;
   timeElapsedMicroseconds: real;
 begin
   table := IterationTable;
   n := NInputIterative.Value;
 
-  // todo: init timer somewhere else
-  et := TEpikTimer.Create(Application);
-  et.Clear;
-  et.Start;
+  timer.Clear;
+  timer.Start;
   arr := FibIterative(n);
-  et.Stop;
-  timeElapsed := et.Elapsed;
+  timer.Stop;
+  timeElapsed := timer.Elapsed;
   timeElapsedMicroseconds := timeElapsed * 1000000.0;
 
   table.ColCount := 3;
@@ -85,10 +92,13 @@ begin
     table.Cells[0, i] := IntToStr(i);
     table.Cells[1, i] := IntToStr(arr[i - 1]);
     if (i <> 1) then
-       table.Cells[2, i] := FloatToStr(arr[i] / arr[i - 1])
+       table.Cells[2, i] := FloatToStr(arr[i - 1] / arr[i - 2])
     else
        table.Cells[2, i] := '—';
   end;
+
+  StatsTable.Cells[1, 1] := IntToStr(n);
+  StatsTable.Cells[1, 2] := IntToStr(Round(TimeElapsedMicroseconds));
 end;
 
 procedure TForm1.RecursionButtonClick(Sender: TObject);
@@ -97,11 +107,18 @@ var
   n, i: integer;
   discard: real;
   table: TStringGrid;
+  timeElapsedMicroseconds: real;
+  timeElapsed: extended;
 begin
   table := RecursionTable;
   n := NInputRecursive.Value;
 
+  timer.Clear;
+  timer.Start;
   arr := FibRecursive(n);
+  timer.Stop;
+  timeElapsed := timer.Elapsed;
+  timeElapsedMicroseconds := timeElapsed * 1000000.0;
 
   table.ColCount := 3;
   table.RowCount := n + 1;
@@ -116,16 +133,20 @@ begin
     table.Cells[0, i] := IntToStr(i);
     table.Cells[1, i] := IntToStr(arr[i - 1]);
     if (i <> 1) then
-       table.Cells[2, i] := FloatToStr(arr[i] / arr[i - 1])
+       table.Cells[2, i] := FloatToStr(arr[i - 1] / arr[i - 2])
     else
        table.Cells[2, i] := '—';
   end;
+  StatsTable.Cells[2, 1] := IntToStr(n);
+  StatsTable.Cells[2, 2] := IntToStr(Round(TimeElapsedMicroseconds));
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
   cv := PanelCanvas.Canvas;
+
+  timer := TEpikTimer.Create(Application);
 end;
 
 end.
