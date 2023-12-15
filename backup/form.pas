@@ -54,11 +54,44 @@ const
 
 procedure DrawRatioRows(data: FibArr; n: integer);
 var
-  RatioArr, OddEvenRatioArr:  array of real;
-  i: integer;
+  RatioArr, OddEvenRatioArr: array of real;
+  i, distance, marginX, marginY, w, h: integer;
+  RMin, RMax, scale: real;
 begin
   SetLength(RatioArr, n - 1);
   SetLength(OddEvenRatioArr, n - 2);
+  for i := n - 1 downto 1 do
+  begin
+    RatioArr[i - 1] := data[i] / data[i - 1];
+  end;
+  for i := n - 1 downto 2 do
+  begin
+    OddEvenRatioArr[i - 2] := data[i] / data[i - 2];
+  end;
+
+  RMin := Min(phi, Min(MinValue(RatioArr), MinValue(OddEvenRatioArr)));
+  RMax := Max(phi, Max(MaxValue(RatioArr), MaxValue(OddEvenRatioArr)));
+
+  if (RMin > RMax) then
+  begin
+  // rm -rf / or somethign idk
+  end;
+
+  w := cv.Width;
+  h := cv.Height;
+
+  ShowMessage(IntToStr(cv.Width) + ' ' + IntToStr(cv.Height));
+
+  cv.Pen.Color := clRed;
+  cv.Pen.Width := 5;
+
+  cv.Line(0, h div 2, w - 1, h div 2 - 1);
+
+  for i := 0 to n - 2 do
+  begin
+  end;
+
+  ShowMessage('Here!');
 end;
 
 procedure TForm1.IterationButtonClick(Sender: TObject);
@@ -75,6 +108,7 @@ begin
   timer.Clear;
   timer.Start;
   arr := FibIterative(n);
+  DrawRatioRows(arr, n);
   timer.Stop;
   timeElapsed := timer.Elapsed;
   timeElapsedMicroseconds := timeElapsed * 1000000.0;
