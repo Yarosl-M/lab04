@@ -72,11 +72,6 @@ begin
   RMin := Min(phi, Min(MinValue(RatioArr), MinValue(OddEvenRatioArr)));
   RMax := Max(phi, Max(MaxValue(RatioArr), MaxValue(OddEvenRatioArr)));
 
-  if (RMin > RMax) then
-  begin
-  // rm -rf / or somethign idk
-  end;
-
   w := cv.Width;
   h := cv.Height;
 

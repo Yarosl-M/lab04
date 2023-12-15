@@ -134,7 +134,6 @@ procedure TForm1.RecursionButtonClick(Sender: TObject);
 var
   arr: FibArr;
   n, i: integer;
-  discard: real;
   table: TStringGrid;
   timeElapsedMicroseconds: real;
   timeElapsed: extended;
