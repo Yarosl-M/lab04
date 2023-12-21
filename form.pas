@@ -62,14 +62,23 @@ begin
   cv.Clear;
   SetLength(RatioArr, n - 1);
   SetLength(OddEvenRatioArr, n - 2);
-  for i := n - 1 downto 1 do
+  for i := 0 to n - 2 do
   begin
-    RatioArr[i - 1] := data[i] / data[i - 1];
+    RatioArr[i] := data[i + 1] / data[i];
   end;
-  for i := n - 1 downto 2 do
+  for i := 0 to n - 3 do
   begin
-    OddEvenRatioArr[i - 2] := data[i] / data[i - 2];
+    OddEvenRatioArr[i] := data[i + 2] / data[i];
   end;
+
+  //for i := n - 1 downto 1 do
+  //begin
+  //  RatioArr[i - 1] := data[i] / data[i - 1];
+  //end;
+  //for i := n - 1 downto 2 do
+  //begin
+  //  OddEvenRatioArr[i - 2] := data[i] / data[i - 2];
+  //end;
 
   RMin := 1.0;
   RMax := 2.0;
@@ -98,6 +107,16 @@ begin
   cv.Pen.Style := psSolid;
 
   Caption := '';
+
+  for i := 0 to n - 2 do
+  begin
+    Caption := Caption + ' ' + FormatFloat('0.##', ratioarr[i]);
+    x := marginX + i * ((w - marginX * 2) div n);
+    y := marginY + Round((2.0 - RatioArr[i]) * (h - marginY * 2));
+
+    cv.Line(x, y, x, y);
+  end;
+exit;
   for i := 0 to n - 2 do
   begin
     x := marginX + i * ((w - marginX * 2) div (n - 1));
@@ -106,7 +125,7 @@ begin
     Caption := Caption + ' ' + FloatToStr(oddEvenratioarr[i]);
 
     // [1; 2] --> [1; 0]
-    y := Round((2.0 - oddEvenRatioArr[i]) * (h - marginY * 2));
+    y := marginY + Round((2.0 - oddEvenRatioArr[i]) * (h - marginY * 2));
 
     cv.Line(x, y, x, y);
   end;
