@@ -36,7 +36,7 @@ begin
   if (n < 2) then
   begin
     res := 1;
-    if (arr[n] = 0) then
+    //if (arr[n] = 0) then
        arr[n] := res;
     CalculateFibRecursive := res;
   end
@@ -47,7 +47,6 @@ begin
        arr[n] := res;
     CalculateFibRecursive := res;
   end;
-
 
   //if (n < 2) then
   //   CalculateFibRecursive := 1
