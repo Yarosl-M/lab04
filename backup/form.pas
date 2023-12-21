@@ -86,7 +86,6 @@ begin
   w := PanelCanvas.Canvas.Width;
   h := PanelCanvas.Canvas.Height;
 
-  // i gave up
   w := 792;
   h := 559;
 
@@ -99,26 +98,28 @@ begin
 
   phiY := (2 - phi) * (h - marginY * 2);
 
-  cv.Line(0, Round(phiY), w - 1, Round(phiY));
+  cv.Line(0, marginY + Round(phiY), w - 1, marginY + Round(phiY));
 
-  // or n - 3???
   cv.Pen.Color := clBlue;
-  cv.Pen.Width := 5;
+  cv.Pen.Width := 8;
   cv.Pen.Style := psSolid;
 
   Caption := '';
 
   for i := 0 to n - 2 do
   begin
-    Caption := Caption + ' ' + FormatFloat('0.##', ratioarr[i]);
     x := marginX + i * ((w - marginX * 2) div n);
     y := marginY + Round((2.0 - RatioArr[i]) * (h - marginY * 2));
 
     cv.Line(x, y, x, y);
   end;
-exit;
-  for i := 0 to n - 2 do
+
+  for i := 0 to n - 3 do
   begin
+    if (odd(i)) then
+         cv.Pen.Color := clPurple
+    else
+       cv.Pen.Color := clGreen;
     x := marginX + i * ((w - marginX * 2) div (n - 1));
 
     // why 3????????
