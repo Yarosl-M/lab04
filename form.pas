@@ -108,7 +108,7 @@ begin
 
   for i := 0 to n - 2 do
   begin
-    x := marginX + i * ((w - marginX * 2) div n);
+    x := marginX + i * Round((w - marginX * 2) / n);
     y := marginY + Round((2.0 - RatioArr[i]) * (h - marginY * 2));
 
     cv.Line(x, y, x, y);
@@ -122,7 +122,7 @@ begin
     else
        // нечётные (1 и 2, 2 и 5)
        cv.Pen.Color := clGreen;
-    x := marginX + i * ((w - marginX * 2) div (n - 1));
+    x := marginX + i * Round((w - marginX * 2) / (n - 1));
 
     // [1; 2] --> [1; 0]
     y := marginY + Round((2.0 - oddEvenRatioArr[i]) * (h - marginY * 2));

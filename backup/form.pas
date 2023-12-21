@@ -13,6 +13,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Label4: TLabel;
     Timer: TEpikTimer;
     IterationButton: TButton;
     PanelCanvas: TPanel;

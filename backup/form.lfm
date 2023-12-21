@@ -161,6 +161,14 @@ object Form1: TForm1
       'Рекурсия'
     )
   end
+  object Label4: TLabel
+    Left = 486
+    Height = 80
+    Top = 625
+    Width = 587
+    Caption = 'Красный: золотое сечение Φ = 1.618...'#13#10'Синий: соотношения между последовательными числами'#13#10'Фиолетовый: соотношения между чётными членами последовательности (минус 1)'#13#10'Зелёный: соотношения между нечётными членами последовательности (минус 1)'
+    ParentColor = False
+  end
   object Timer: TEpikTimer
     StringPrecision = 6
     TimebaseSource = SystemTimebase
