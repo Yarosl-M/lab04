@@ -57,7 +57,7 @@ procedure TForm1.DrawRatioRows(data: FibArr; n: integer);
 var
   RatioArr, OddEvenRatioArr: array of real;
   i, distance, marginX, marginY, w, h, x, y: integer;
-  RMin, RMax, scale: real;
+  RMin, RMax, scale, phiY: real;
 begin
   cv.Clear;
   SetLength(RatioArr, n - 1);
@@ -71,22 +71,13 @@ begin
     OddEvenRatioArr[i - 2] := data[i] / data[i - 2];
   end;
 
-  RMin := Min(phi, Min(MinValue(RatioArr), MinValue(OddEvenRatioArr)));
-  RMax := Max(phi, Max(MaxValue(RatioArr), MaxValue(OddEvenRatioArr)));
+  RMin := 1.0;
+  RMax := 2.0;
 
-  // Lazarus and Pascal in general is a shame for humanity
-  // Did old fart Wirth think it would look "good" or be "better
-  // for learning"? A student can start learning from Python
-  // or even C++ just fine, without having to dance with
-  // a tambourine just to get the WIDTH and HEIGHT of a canvas
-  // from THE CANVAS ITSELF
   w := PanelCanvas.Canvas.Width;
   h := PanelCanvas.Canvas.Height;
 
-  // I officially give up. This language sucks, this whole platform sucks
-  // Why do I have to use something that looks like it was made in 2001
-  // if I have tools that are not PITA to use and actually RETURN
-  // THE WIDTH OF THE CANVAS ELEMENTS WHEN YOU NEED
+  // i gave up
   w := 792;
   h := 559;
 
@@ -94,20 +85,26 @@ begin
   cv.Pen.Width := 2;
   cv.Pen.Style := psDash;
 
-  cv.Line(0, h div 2, w - 1, h div 2);
+  marginX := 20;
+  marginY := 20;
 
-  marginX := 15;
-  marginY := 15;
+  phiY := (2 - phi) * (h - marginY * 2);
+
+  cv.Line(0, Round(phiY), w - 1, Round(phiY));
 
   // or n - 3???
   cv.Pen.Color := clBlue;
   cv.Pen.Width := 5;
   cv.Pen.Style := psSolid;
-  showmessage(FloatToStr(RMax) + ' ' + FloatToStr(RMin));
+
+  Caption := '';
   for i := 0 to n - 2 do
   begin
     x := marginX + i * ((w - marginX * 2) div (n - 1));
-    y := Round(oddEvenRatioArr[i] / RMax * (h - marginY * 2));
+    Caption := Caption + ' ' + FloatToStr(oddEvenratioarr[i]);
+
+    // [1; 2] --> [1; 0]
+    y := Round((2.0 - oddEvenRatioArr[i]) * (h - marginY * 2));
 
     cv.Line(x, y, x, y);
   end;

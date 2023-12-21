@@ -57,7 +57,7 @@ procedure TForm1.DrawRatioRows(data: FibArr; n: integer);
 var
   RatioArr, OddEvenRatioArr: array of real;
   i, distance, marginX, marginY, w, h, x, y: integer;
-  RMin, RMax, scale: real;
+  RMin, RMax, scale, phiY: real;
 begin
   cv.Clear;
   SetLength(RatioArr, n - 1);
@@ -71,8 +71,8 @@ begin
     OddEvenRatioArr[i - 2] := data[i] / data[i - 2];
   end;
 
-  RMin := Min(phi, Min(MinValue(RatioArr), MinValue(OddEvenRatioArr)));
-  RMax := Max(phi, Max(MaxValue(RatioArr), MaxValue(OddEvenRatioArr)));
+  RMin := 1.0;
+  RMax := 2.0;
 
   w := PanelCanvas.Canvas.Width;
   h := PanelCanvas.Canvas.Height;
@@ -85,20 +85,28 @@ begin
   cv.Pen.Width := 2;
   cv.Pen.Style := psDash;
 
-  cv.Line(0, h div 2, w - 1, h div 2);
+  marginX := 20;
+  marginY := 20;
 
-  marginX := 15;
-  marginY := 15;
+  phiY := (2 - phi) * (h - marginY * 2);
+
+  cv.Line(0, Round(phiY), w - 1, Round(phiY));
 
   // or n - 3???
   cv.Pen.Color := clBlue;
   cv.Pen.Width := 5;
   cv.Pen.Style := psSolid;
-  showmessage(FloatToStr(RMax) + ' ' + FloatToStr(RMin));
+
+  Caption := '';
   for i := 0 to n - 2 do
   begin
     x := marginX + i * ((w - marginX * 2) div (n - 1));
-    y := Round(oddEvenRatioArr[i] / RMax * (h - marginY * 2));
+
+    // why 3????????
+    Caption := Caption + ' ' + FloatToStr(oddEvenratioarr[i]);
+
+    // [1; 2] --> [1; 0]
+    y := Round((2.0 - oddEvenRatioArr[i]) * (h - marginY * 2));
 
     cv.Line(x, y, x, y);
   end;
