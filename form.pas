@@ -73,15 +73,6 @@ begin
     OddEvenRatioArr[i] := (data[i + 2] / data[i]) - 1.0;
   end;
 
-  //for i := n - 1 downto 1 do
-  //begin
-  //  RatioArr[i - 1] := data[i] / data[i - 1];
-  //end;
-  //for i := n - 1 downto 2 do
-  //begin
-  //  OddEvenRatioArr[i - 2] := data[i] / data[i - 2];
-  //end;
-
   RMin := 1.0;
   RMax := 2.0;
 

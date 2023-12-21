@@ -119,9 +119,9 @@ begin
     if (odd(i)) then
        // чётные (1 и 3, 3 и 8)
          cv.Pen.Color := clPurple
-    else continue;
+    else
        // нечётные (1 и 2, 2 и 5)
-       //cv.Pen.Color := clGreen;
+       cv.Pen.Color := clGreen;
     x := marginX + i * Round((w - marginX * 2) / (n - 1));
 
     // [1; 2] --> [1; 0]
