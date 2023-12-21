@@ -31,6 +31,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure IterationButtonClick(Sender: TObject);
     procedure RecursionButtonClick(Sender: TObject);
+    procedure DrawRatioRows(data: FibArr; n: integer);
   private
 
   public
@@ -52,12 +53,13 @@ var
 const
   phi = (Sqrt(5) + 1) / 2.0;
 
-procedure DrawRatioRows(data: FibArr; n: integer);
+procedure TForm1.DrawRatioRows(data: FibArr; n: integer);
 var
   RatioArr, OddEvenRatioArr: array of real;
-  i, distance, marginX, marginY, w, h: integer;
+  i, distance, marginX, marginY, w, h, x, y: integer;
   RMin, RMax, scale: real;
 begin
+  cv.Clear;
   SetLength(RatioArr, n - 1);
   SetLength(OddEvenRatioArr, n - 2);
   for i := n - 1 downto 1 do
@@ -72,21 +74,35 @@ begin
   RMin := Min(phi, Min(MinValue(RatioArr), MinValue(OddEvenRatioArr)));
   RMax := Max(phi, Max(MaxValue(RatioArr), MaxValue(OddEvenRatioArr)));
 
-  w := cv.Width;
-  h := cv.Height;
+  w := PanelCanvas.Canvas.Width;
+  h := PanelCanvas.Canvas.Height;
 
-  ShowMessage(IntToStr(cv.Width) + ' ' + IntToStr(cv.Height));
+  // i gave up
+  w := 792;
+  h := 559;
 
   cv.Pen.Color := clRed;
+  cv.Pen.Width := 2;
+  cv.Pen.Style := psDash;
+
+  cv.Line(0, h div 2, w - 1, h div 2);
+
+  marginX := 15;
+  marginY := 15;
+
+  // or n - 3???
+  cv.Pen.Color := clBlue;
   cv.Pen.Width := 5;
-
-  cv.Line(0, h div 2, w - 1, h div 2 - 1);
-
+  cv.Pen.Style := psSolid;
+  showmessage(FloatToStr(RMax) + ' ' + FloatToStr(RMin));
   for i := 0 to n - 2 do
   begin
+    x := marginX + i * ((w - marginX * 2) div (n - 1));
+    y := Round(oddEvenRatioArr[i] / RMax * (h - marginY * 2));
+
+    cv.Line(x, y, x, y);
   end;
 
-  ShowMessage('Here!');
 end;
 
 procedure TForm1.IterationButtonClick(Sender: TObject);
@@ -103,8 +119,8 @@ begin
   timer.Clear;
   timer.Start;
   arr := FibIterative(n);
-  DrawRatioRows(arr, n);
   timer.Stop;
+  DrawRatioRows(arr, n);
   timeElapsed := timer.Elapsed;
   timeElapsedMicroseconds := timeElapsed * 1000000.0;
 
