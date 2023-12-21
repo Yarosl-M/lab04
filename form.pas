@@ -123,7 +123,6 @@ begin
        cv.Pen.Color := clGreen;
     x := marginX + i * ((w - marginX * 2) div (n - 1));
 
-    // why 3????????
     Caption := Caption + ' ' + FloatToStr(oddEvenratioarr[i]);
 
     // [1; 2] --> [1; 0]

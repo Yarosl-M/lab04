@@ -68,7 +68,8 @@ begin
   end;
   for i := 0 to n - 3 do
   begin
-    OddEvenRatioArr[i] := data[i + 2] / data[i];
+    // to "normalize", subtract 1
+    OddEvenRatioArr[i] := (data[i + 2] / data[i]) - 1.0;
   end;
 
   //for i := n - 1 downto 1 do
