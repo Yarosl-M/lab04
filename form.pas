@@ -189,6 +189,7 @@ begin
   timer.Start;
   arr := FibRecursive(n);
   timer.Stop;
+  DrawRatioRows(arr, n);
   timeElapsed := timer.Elapsed;
   timeElapsedMicroseconds := timeElapsed * 1000000.0;
 
