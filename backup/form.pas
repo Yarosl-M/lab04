@@ -86,6 +86,7 @@ begin
   w := PanelCanvas.Canvas.Width;
   h := PanelCanvas.Canvas.Height;
 
+  // i gave up
   w := 792;
   h := 559;
 
