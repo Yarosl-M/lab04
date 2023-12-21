@@ -42,8 +42,7 @@ begin
   else
   begin
     res := CalculateFibRecursive(n - 1, arr) + CalculateFibRecursive(n - 2, arr);
-    if (arr[n] = 0) then
-       arr[n] := res;
+    arr[n] := res;
     CalculateFibRecursive := res;
   end;
 
