@@ -105,8 +105,6 @@ begin
   cv.Pen.Width := 8;
   cv.Pen.Style := psSolid;
 
-  Caption := '';
-
   for i := 0 to n - 2 do
   begin
     x := marginX + i * ((w - marginX * 2) div n);
@@ -122,8 +120,6 @@ begin
     else
        cv.Pen.Color := clGreen;
     x := marginX + i * ((w - marginX * 2) div (n - 1));
-
-    Caption := Caption + ' ' + FloatToStr(oddEvenratioarr[i]);
 
     // [1; 2] --> [1; 0]
     y := marginY + Round((2.0 - oddEvenRatioArr[i]) * (h - marginY * 2));

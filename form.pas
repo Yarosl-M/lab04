@@ -116,8 +116,10 @@ begin
   for i := 0 to n - 3 do
   begin
     if (odd(i)) then
+       // чётные (1 и 3, 3 и 8)
          cv.Pen.Color := clPurple
     else
+       // нечётные (1 и 2, 2 и 5)
        cv.Pen.Color := clGreen;
     x := marginX + i * ((w - marginX * 2) div (n - 1));
 
