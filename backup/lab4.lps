@@ -18,9 +18,8 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="121"/>
-        <CursorPos Y="125"/>
+        <TopLine Value="116"/>
+        <CursorPos X="15" Y="189"/>
         <UsageCount Value="37"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -29,9 +28,10 @@
         <Filename Value="fibonaccibackend.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FibonacciBackend"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="29"/>
-        <CursorPos X="14" Y="38"/>
+        <TopLine Value="2"/>
+        <CursorPos X="5" Y="9"/>
         <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit>
