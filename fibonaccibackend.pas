@@ -45,11 +45,6 @@ begin
     arr[n] := res;
     CalculateFibRecursive := res;
   end;
-
-  //if (n < 2) then
-  //   CalculateFibRecursive := 1
-  //else
-  //   CalculateFibRecursive := CalculateFibRecursive(n - 1) + CalculateFibRecursive(n - 2);
 end;
 
 function FibRecursive(n: Integer): FibArr;
